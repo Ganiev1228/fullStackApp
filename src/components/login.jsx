@@ -1,17 +1,27 @@
 import { useState } from 'react';
 import logo from '../constants/logo/fifa.svg'
 import {Input} from '../ui'
-import {loginUserStart} from '../slice/login-auth'
+import { signUserFailure, signUserStart, signUserSucces} from '../slice/login-auth'
 import { useDispatch, useSelector } from 'react-redux';
+import AuthService from '../service/auth';
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const {isLoading} = useSelector(state=>state.loginn)
   console.log(isLoading)
-  const loginHandler =((e)=>{
+  const loginHandler =(async(e)=>{
     e.preventDefault()
-      dispatch(loginUserStart())
+    const user = {email,password}
+    dispatch(signUserStart())
+    try {
+      const response = await AuthService.userLogin(user)
+      console.log(response)
+      console.log(response.user)
+      dispatch(signUserSucces(response.user))
+    } catch (error) {
+      dispatch(signUserFailure(error.message))
+    }
   })
   return (
 

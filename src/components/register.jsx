@@ -2,7 +2,7 @@ import { useState } from 'react';
 import logo from '../constants/logo/fifa.svg'
 import {Input} from '../ui'
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUserStart,registerUserSucces,registerUserFailure } from '../slice/login-auth';
+import { signUserStart,signUserFailure, signUserSucces } from '../slice/login-auth';
 import AuthService from '../service/auth';
 
 const Register = () => {
@@ -12,17 +12,20 @@ const Register = () => {
   const [password,setPassword]=useState('')
   const {isLoading} = useSelector(state=>state.loginn)
   const dispatch = useDispatch()
+
   const registerHandler =(async e=>{
     e.preventDefault()
-    dispatch(registerUserStart())
+    dispatch(signUserStart())
     const user = {username:name,email,password}
     try {
       const response = await AuthService.userRegister(user)
       console.log(response)
       console.log(user)
-      dispatch(registerUserSucces())
+      dispatch(signUserSucces(response.user))
     } catch (error) {
-      dispatch(registerUserFailure())
+      console.log(error);
+      
+      dispatch(signUserFailure(error.message))
       
     }
   })
