@@ -1,9 +1,18 @@
 import { useState } from 'react';
 import logo from '../constants/logo/fifa.svg'
 import {Input} from '../ui'
+import {loginUserStart} from '../slice/login-auth'
+import { useDispatch, useSelector } from 'react-redux';
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+  const {isLoading} = useSelector(state=>state.loginn)
+  console.log(isLoading)
+  const loginHandler =((e)=>{
+    e.preventDefault()
+      dispatch(loginUserStart())
+  })
   return (
 
       <main className="form-signin w-50 m-auto">
@@ -31,8 +40,8 @@ const Login = () => {
               Remember me
             </label>
           </div>
-          <button className="btn btn-primary w-100 py-2" type="submit">
-            Sign in
+          <button className="btn btn-primary w-100 py-2" type="submit" onClick={loginHandler} disabled={isLoading} >
+            {isLoading?'Loading...':'Login'}
           </button>
           <p className=" text-center mt-5 mb-3 text-body-secondary">© 2017–2025</p>
         </form>
