@@ -2,7 +2,8 @@ import { useState } from 'react';
 import logo from '../constants/logo/fifa.svg'
 import {Input} from '../ui'
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUserStart } from '../slice/login-auth';
+import { registerUserStart,registerUserSucces,registerUserFailure } from '../slice/login-auth';
+import AuthService from '../service/auth';
 
 const Register = () => {
 
@@ -11,9 +12,19 @@ const Register = () => {
   const [password,setPassword]=useState('')
   const {isLoading} = useSelector(state=>state.loginn)
   const dispatch = useDispatch()
-  const registerHandler =(e=>{
-    // e.preventDefault()
-    dispatch(loginUserStart())
+  const registerHandler =(async e=>{
+    e.preventDefault()
+    dispatch(registerUserStart())
+    const user = {username:name,email,password}
+    try {
+      const response = await AuthService.userRegister(user)
+      console.log(response)
+      console.log(user)
+      dispatch(registerUserSucces())
+    } catch (error) {
+      dispatch(registerUserFailure())
+      
+    }
   })
 
   return (
@@ -32,7 +43,7 @@ const Register = () => {
          <Input label="Email address" state={email} setState={setEmail}></Input>
          <Input label="Password" type='password' state = {password} setState={setPassword}></Input>
         
-          <button className="btn btn-primary w-100 py-2"  onClick={registerHandler} disabled={isLoading}>
+          <button className="btn btn-primary w-100 py-2" type='submit'  onClick={registerHandler} disabled={isLoading}>
            {isLoading?"Loading":"Register"}
           </button>
         </form>
