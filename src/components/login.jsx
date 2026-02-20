@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../constants/logo/fifa.svg'
 import {Input} from '../ui'
 import { signUserFailure, signUserStart, signUserSucces} from '../slice/login-auth'
@@ -11,7 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
-  const {isLoading} = useSelector(state=>state.loginn)
+  const {isLoading,loggedIn} = useSelector(state=>state.loginn)
   const navigate = useNavigate()
 
   const loginHandler =(async(e)=>{
@@ -29,6 +29,11 @@ const Login = () => {
       dispatch(signUserFailure(error.message))
     }
   })
+  useEffect(()=>{
+    if(loggedIn){
+      navigate('/')
+    }
+  },[loggedIn])
   return (
 
       <main className="form-signin w-50 m-auto">

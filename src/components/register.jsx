@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../constants/logo/fifa.svg'
 import {Input} from '../ui'
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ const Register = () => {
   const [name,setName]=useState('')
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
-  const {isLoading} = useSelector(state=>state.loginn)
+  const {isLoading,loggedIn} = useSelector(state=>state.loginn)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -31,6 +31,11 @@ const Register = () => {
       
     }
   })
+   useEffect(()=>{
+      if(loggedIn){
+        navigate('/')
+      }
+    },[loggedIn])
 
   return (
       <main className="form-signin w-50 m-auto">
