@@ -5,13 +5,15 @@ import { signUserFailure, signUserStart, signUserSucces} from '../slice/login-au
 import { useDispatch, useSelector } from 'react-redux';
 import AuthService from '../service/auth';
 import ValidationErrors from './validation-errors';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const {isLoading} = useSelector(state=>state.loginn)
-  console.log(isLoading)
+  const navigate = useNavigate()
+
   const loginHandler =(async(e)=>{
     e.preventDefault()
     const user = {email,password}
@@ -21,7 +23,9 @@ const Login = () => {
       console.log(response)
       console.log(response.user)
       dispatch(signUserSucces(response.user))
+      navigate('/')
     } catch (error) {
+      console.log("errororo"+error)
       dispatch(signUserFailure(error.message))
     }
   })
