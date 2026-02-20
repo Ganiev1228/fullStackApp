@@ -4,6 +4,8 @@ import {Input} from '../ui'
 import { signUserFailure, signUserStart, signUserSucces} from '../slice/login-auth'
 import { useDispatch, useSelector } from 'react-redux';
 import AuthService from '../service/auth';
+import ValidationErrors from './validation-errors';
+
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -36,6 +38,7 @@ const Login = () => {
           />
 
           <h1 className="h3 mb-3 fw-normal text-center">Please sign in</h1>
+          <ValidationErrors></ValidationErrors>
          <Input label="Email address" state={email} setState={setEmail}></Input>
          <Input label="Password" type={'password'} state={password} setState={setPassword}></Input>
           

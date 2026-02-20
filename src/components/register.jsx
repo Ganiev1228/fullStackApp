@@ -4,6 +4,7 @@ import {Input} from '../ui'
 import { useDispatch, useSelector } from 'react-redux';
 import { signUserStart,signUserFailure, signUserSucces } from '../slice/login-auth';
 import AuthService from '../service/auth';
+import ValidationErrors from './validation-errors';
 
 const Register = () => {
 
@@ -23,8 +24,6 @@ const Register = () => {
       console.log(user)
       dispatch(signUserSucces(response.user))
     } catch (error) {
-      console.log(error);
-      
       dispatch(signUserFailure(error.message))
       
     }
@@ -42,6 +41,7 @@ const Register = () => {
           />
 
           <h1 className="h3 mb-3 fw-normal text-center">Please register</h1>
+          <ValidationErrors/>
          <Input label="Username" state={name} setState={setName}></Input>
          <Input label="Email address" state={email} setState={setEmail}></Input>
          <Input label="Password" type='password' state = {password} setState={setPassword}></Input>
