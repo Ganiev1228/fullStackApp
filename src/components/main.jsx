@@ -1,11 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Loader } from '../ui';
+import { useNavigate } from 'react-router-dom';
 
 const Main = () => {
+  const navigate = useNavigate()
   const { articles,isLoading } = useSelector((state) => state.articles);
   return (
     <div className='album py-5 bg-body-tertiary'>
-      <div className='container'>
+      <div>
         {isLoading&&<Loader/>}
         <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
           {articles.map((item) => (
@@ -30,7 +32,7 @@ const Main = () => {
                 </div>
                   <div className=' card-footer d-flex justify-content-between align-items-center '>
                     <div className='btn-group'>
-                      <button type='button' className='btn btn-sm btn-outline-success'>
+                      <button type='button' className='btn btn-sm btn-outline-success ' onClick={()=>navigate(`/articles/${item.slug}`)}>
                         View
                       </button>
                       <button type='button' className='btn btn-sm btn-outline-secondary'>

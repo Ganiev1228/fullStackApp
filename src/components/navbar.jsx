@@ -14,7 +14,7 @@ const Navbar = () => {
     navigate('/login')
   })
   return (
-    <div>
+    <div className="container">
       <div
         style={{
           backgroundColor: "#eae494",
