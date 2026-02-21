@@ -11,4 +11,11 @@ export const getItem = (key)=>{
   } catch (error) {
     console.log("getItem error")
   }
+};
+export const removeItem = (key)=>{
+  try {
+    localStorage.removeItem(key)
+  } catch (error) {
+    console.log('error while removing localStorageItem')
+  }
 }

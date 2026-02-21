@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../constants/logo/fifa.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItem } from "../helpers/persistance-storage";
+import { logOut } from "../slice/login-auth";
 const Navbar = () => {
   const { loggedIn, user } = useSelector((state) => state.loginn);
-
+  
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const Logout = (()=>{
+    dispatch(logOut())
+    removeItem('token')
+    navigate('/login')
+  })
   return (
     <div>
       <div
@@ -33,14 +42,13 @@ const Navbar = () => {
               >
                 {user.username}
               </p>
-              <Link to={""}>
                 <button
                   className="btn btn-outline-danger"
                   style={{ paddingBottom: "8px" }}
+                  onClick={Logout}
                 >
                   Logout
                 </button>
-              </Link>
             </>
           ) : (
             <>

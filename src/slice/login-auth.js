@@ -28,9 +28,13 @@ export const loginSlice = createSlice({
       state.loggedIn= false
       state.error=action.payload
     },
+    logOut: (state)=>{
+      state.user=null
+      state.loggedIn=false
+    }
   },
 });
 
-export const { signUserStart,signUserSucces,signUserFailure } =
+export const { signUserStart,signUserSucces,signUserFailure,logOut } =
   loginSlice.actions;
 export default loginSlice.reducer;
