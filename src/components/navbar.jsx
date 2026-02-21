@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../constants/logo/fifa.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../helpers/persistance-storage";
-import { logOut } from "../slice/login-auth";
+import { logOut } from "../slice/login-slice";
 const Navbar = () => {
   const { loggedIn, user } = useSelector((state) => state.loginn);
   

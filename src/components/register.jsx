@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import logo from '../constants/logo/fifa.svg'
 import {Input} from '../ui'
 import { useDispatch, useSelector } from 'react-redux';
-import { signUserStart,signUserFailure, signUserSucces } from '../slice/login-auth';
+import { signUserStart,signUserFailure, signUserSucces } from '../slice/login-slice';
 import AuthService from '../service/auth';
 import ValidationErrors from './validation-errors';
 import { useNavigate } from 'react-router-dom';

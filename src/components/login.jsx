@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import logo from '../constants/logo/fifa.svg'
 import {Input} from '../ui'
-import { signUserFailure, signUserStart, signUserSucces} from '../slice/login-auth'
+import { signUserFailure, signUserStart, signUserSucces} from '../slice/login-slice'
 import { useDispatch, useSelector } from 'react-redux';
 import AuthService from '../service/auth';
 import ValidationErrors from './validation-errors';
