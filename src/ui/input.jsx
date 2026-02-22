@@ -1,8 +1,8 @@
-const Input = ({ label, state, setState, type='text' }) => {
+const Input = ({ label, state, setState, type='text',sx}) => {
   return (
-    <div className="form-floating mb-3">
+    <div className="form-floating">
       <input
-    
+        style={sx}
         type={type}
         className="form-control"
         value={state}
