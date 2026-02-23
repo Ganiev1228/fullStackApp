@@ -1,6 +1,6 @@
 const TextArea = ({label,state,setState,style}) => {
   return (
-    <div class='form-floating'>
+    <div className='form-floating'>
       <textarea
         className='form-control'
         value={state}

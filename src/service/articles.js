@@ -8,7 +8,11 @@ const articleService ={
     async getArticleDetail(slug){
         const articleDetail = await axios.get(`/articles/${slug}`)
         return articleDetail
-    }
+    },
+    async postArticle(article){
+        const {data} = await axios.post('/articles',{article})
+        return data
+    },
 }
 
 export default articleService

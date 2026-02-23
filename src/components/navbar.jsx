@@ -44,11 +44,14 @@ const Navbar = () => {
               </p>
                 <button
                   className="btn btn-outline-danger"
-                  style={{ paddingBottom: "8px" }}
+                  style={{ paddingBottom: "7px" }}
                   onClick={Logout}
                 >
                   Logout
                 </button>
+                 <Link to={"/create-article"}>
+                <button className="btn btn-outline-primary">Create-Post</button>
+              </Link>
             </>
           ) : (
             <>
@@ -58,6 +61,7 @@ const Navbar = () => {
               <Link to={"/register"}>
                 <button className="btn btn-outline-primary">Register</button>
               </Link>
+             
             </>
           )}
         </div>
