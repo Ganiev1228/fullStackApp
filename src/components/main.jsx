@@ -8,7 +8,8 @@ import { useEffect } from 'react';
 const Main = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { articles,isLoading } = useSelector((state) => state.articles);
+  const { articles,isLoading} = useSelector((state) => state.articles);
+  const { user,loggedIn} = useSelector((state) => state.loginn);
 
   const getArticles = async () => {
     dispatch(getArticlesStart());
@@ -23,7 +24,15 @@ const Main = () => {
   useEffect(()=>{
     getArticles()
   },[])
-  
+
+  const deleteArtikl = async slug =>{
+    try {
+      await articleService.deleteArticle(slug)
+      getArticles()
+    } catch (error) {
+      console.log("error while deleting")
+    }
+  }
   return (
     <div className='album py-5 bg-body-tertiary'>
       <div>
@@ -54,12 +63,16 @@ const Main = () => {
                       <button type='button' className='btn btn-sm btn-outline-success ' onClick={()=>navigate(`/articles/${item.slug}`)}>
                         View
                       </button>
+                      {loggedIn&&user.username===item.author.username&&(
+                      <>
                       <button type='button' className='btn btn-sm btn-outline-secondary'>
                         Edit
                       </button>
-                      <button type='button' className='btn btn-sm btn-outline-danger'>
+                      <button type='button' className='btn btn-sm btn-outline-danger' onClick={()=>deleteArtikl(item.slug)}>
                         Delete
                       </button>
+                      </>
+                      )}
                     </div>
                     <small className='text-body-secondary text-capitalize fw-bold'>
                       {item.author.username}

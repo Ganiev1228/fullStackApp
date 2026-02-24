@@ -41,7 +41,7 @@ export const articleSlice = createSlice({
         },
         postArticleFailure:(state)=>{
             state.error='error'
-        }
+        },
         
 
         
