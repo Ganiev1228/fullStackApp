@@ -19,7 +19,6 @@ const ArticleDetail = () => {
     dispatch(getArticleDeatailStart());
     try {
       const { data } = await articleService.getArticleDetail(slug);
-      console.log(articleDetail);
       dispatch(getArticleDetailSuccess(data.article));
     } catch (error) {
       dispatch(getArticleDetailFailure());
@@ -29,7 +28,6 @@ const ArticleDetail = () => {
   useEffect(() => {
     getArticleDetail();
   }, [slug]);
-  console.log(slug);
   return (
     isLoading?<Loader/>:
     articleDetail&&(

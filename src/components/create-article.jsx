@@ -12,7 +12,7 @@ const CreateArticle = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const postarticle = async (e) => {
+  const formsubmit = async (e) => {
     e.preventDefault();
     const article = { title, description, body };
     dispatch(postArticleStart())
@@ -27,7 +27,7 @@ const CreateArticle = () => {
     }
   };
 
-  const proplar = { title, setTitle, description, setDescription, body, setBody, postarticle, tag:"Create" };
+  const proplar = { title, setTitle, description, setDescription, body, setBody, formsubmit, tag:"Create" };
   return (
     <div className='text-center'>
       <h1 className=''>Create Article</h1>

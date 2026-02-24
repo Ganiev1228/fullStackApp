@@ -2,10 +2,10 @@ import { Input, TextArea } from '../ui';
 
 const InputField = (prop) => {
 
-const {title,setTitle,description,setDescription,body,setBody,postarticle,tag} = prop
+const {title,setTitle,description,setDescription,body,setBody,formsubmit,tag} = prop
   return (
     <div>
-      <form onSubmit={postarticle} className=' mt-3 w-75 mx-auto d-flex flex-column gap-2'>
+      <form onSubmit={formsubmit} className=' mt-3 w-75 mx-auto d-flex flex-column gap-2'>
         <Input sx={{ border: '1px solid black' }} label={'Title'} state={title} setState={setTitle}></Input>
         <TextArea
           label={'Description'}
