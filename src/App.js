@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { ArticleDetail, CreateArticle, Login, Main, Navbar, Register } from './components';
+import { ArticleDetail, CreateArticle, EditArticle, Login, Main, Navbar, Register } from './components';
 import { getItem } from './helpers/persistance-storage';
 import AuthService from './service/auth';
 import { signUserSucces } from './slice/login-slice';
@@ -34,6 +34,7 @@ const App = () => {
           <Route path='/register' element={<Register />}></Route>
           <Route path='/articles/:slug' element={<ArticleDetail />}></Route>
           <Route path='/create-article' element={<CreateArticle />}></Route>
+          <Route path='/edit-article/:slug' element={<EditArticle />}></Route>
         </Routes>
       </div>
     </div>

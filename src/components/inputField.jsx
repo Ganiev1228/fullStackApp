@@ -2,7 +2,7 @@ import { Input, TextArea } from '../ui';
 
 const InputField = (prop) => {
 
-const {title,setTitle,description,setDescription,body,setBody,postarticle} = prop
+const {title,setTitle,description,setDescription,body,setBody,postarticle,tag} = prop
   return (
     <div>
       <form onSubmit={postarticle} className=' mt-3 w-75 mx-auto d-flex flex-column gap-2'>
@@ -13,7 +13,7 @@ const {title,setTitle,description,setDescription,body,setBody,postarticle} = pro
           setState={setDescription}
           style={{ height: '100px' }}></TextArea>
         <TextArea label={'Body'} state={body} setState={setBody} style={{ height: '200px' }}></TextArea>
-        <button className='form-control btn btn-outline-primary' >Create</button>
+        <button className='form-control btn btn-outline-primary' >{tag}</button>
       </form>
     </div>
   );

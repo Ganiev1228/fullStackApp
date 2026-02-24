@@ -27,7 +27,7 @@ const CreateArticle = () => {
     }
   };
 
-  const proplar = { title, setTitle, description, setDescription, body, setBody, postarticle };
+  const proplar = { title, setTitle, description, setDescription, body, setBody, postarticle, tag:"Create" };
   return (
     <div className='text-center'>
       <h1 className=''>Create Article</h1>
